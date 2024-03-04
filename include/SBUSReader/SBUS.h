@@ -4,6 +4,7 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "hardware/uart.h"
+#include <string.h>
 
 #if !defined(SBUS_h)
 #define SBUS_h
@@ -41,13 +42,10 @@ struct sbus_data {
 	bool failsafe;
 };
 
-static struct sbus_data sbus;
-
-static char sbus_buffer[SBUS_FRAME_SIZE];
-static int sbus_buffer_index = 0;
-
 void on_uart_rx();
 
 void init_sbus();
+
+void read_sbus(struct sbus_data *data);
 
 #endif // SBUS_h

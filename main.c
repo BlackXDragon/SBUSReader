@@ -9,7 +9,10 @@ int main() {
 
 	init_sbus();
 
+	struct sbus_data sbus;
+
 	while (true) {
+		read_sbus(&sbus);
 		printf("SBUS: %d\t%d\t%d\t%d\n", sbus.channels[0], sbus.channels[1], sbus.channels[2], sbus.channels[3]);
 		printf("Failsafe: %d\n", sbus.failsafe);
 		sleep_ms(100);

@@ -1,5 +1,10 @@
 #include <SBUSReader/SBUS.h>
 
+static struct sbus_data sbus;
+
+static char sbus_buffer[SBUS_FRAME_SIZE];
+static int sbus_buffer_index = 0;
+
 void on_uart_rx() {
 	while (uart_is_readable(SBUS_UART_ID)) {
 		uint8_t ch = uart_getc(SBUS_UART_ID);
@@ -72,4 +77,9 @@ void init_sbus() {
 	irq_set_exclusive_handler(UART_IRQ, on_uart_rx);
 	irq_set_enabled(UART_IRQ, true);
 	uart_set_irq_enables(SBUS_UART_ID, true, false);
+}
+
+void read_sbus(struct sbus_data *sbus_data) {
+	// Copy the SBUS data to the provided struct
+	memcpy(sbus_data, &sbus, sizeof(struct sbus_data));
 }
