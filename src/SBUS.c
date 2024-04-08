@@ -41,6 +41,8 @@ void on_uart_rx() {
 				sbus.ch18 = (sbus_buffer[23] & 0x40) != 0;
 				sbus.frame_lost = (sbus_buffer[23] & 0x20) != 0;
 				sbus.failsafe = (sbus_buffer[23] & 0x10) != 0;
+				
+				sbus.last_update = time_us_32();
 
 				// Reset the buffer index
 				sbus_buffer_index = 0;

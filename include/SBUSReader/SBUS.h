@@ -40,6 +40,7 @@ struct sbus_data {
 	bool ch18;
 	bool frame_lost;
 	bool failsafe;
+	uint32_t last_update;
 };
 
 void on_uart_rx();
